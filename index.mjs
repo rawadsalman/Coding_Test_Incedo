@@ -41,7 +41,7 @@ const getRandomArtistNames = () => {
 }
 
 const readLine = () => {
-        var userName = readlineSync.question('May I have your name? ');
+        var userName = readlineSync.question('Enter the name of the artist ');
         console.log('Hi ' + userName + '!');
         artistName=userName;
 }
