@@ -2,10 +2,13 @@ import fs from 'fs';
 import converter from 'json-2-csv';
 import 'dotenv/config';
 import fetch from 'node-fetch';
+import readlineSync from 'readline-sync';
+
+
 
 const api_key=process.env.API_KEY;
 
-var artistName = 'cher';
+var artistName = '';
 var body = '';
 var randomArtist=[];
 var rand =0;
@@ -37,8 +40,14 @@ const getRandomArtistNames = () => {
   })
 }
 
-const main = () => {
+const readLine = () => {
+        var userName = readlineSync.question('May I have your name? ');
+        console.log('Hi ' + userName + '!');
+        artistName=userName;
+}
 
+const main = () => {
+   readLine();
    fetch("http://ws.audioscrobbler.com/2.0/?method=artist.search&artist="+artistName+"&api_key="+api_key+"&format=json")
    .then((res) => res.json())
    .then((json) => {
